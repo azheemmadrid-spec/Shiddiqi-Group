@@ -1,0 +1,5 @@
+const toggle=document.getElementById('menuToggle');const nav=document.getElementById('nav');
+toggle.addEventListener('click',()=>{const open=nav.classList.toggle('open');toggle.setAttribute('aria-expanded',String(open));toggle.textContent=open?'×':'☰'});
+nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');toggle.setAttribute('aria-expanded','false');toggle.textContent='☰'}));
+document.getElementById('year').textContent=new Date().getFullYear();
+document.getElementById('inquiryForm').addEventListener('submit',e=>{e.preventDefault();const f=e.currentTarget;const data=new FormData(f);const subject=encodeURIComponent('Business inquiry — Shiddiqi Group / '+data.get('topic'));const body=encodeURIComponent(`Nama: ${data.get('name')}\nKontak balasan: ${data.get('reply')}\nTopik: ${data.get('topic')}\n\nPesan:\n${data.get('message')}`);document.getElementById('formNotice').textContent='Draft pesan akan dibuka di aplikasi email. Ganti alamat email resmi perusahaan sebelum menggunakan formulir ini.';window.location.href=`mailto:?subject=${subject}&body=${body}`;});
